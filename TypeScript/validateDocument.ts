@@ -9,8 +9,8 @@ const validateDocument = (doc: string): boolean => {
   return false;
 };
 
-console.log("CPF com máscara:", validateDocument("027.207.263-03"));
-console.log("CPF sem máscara:", validateDocument("02720726303"));
+console.log("CPF com máscara:", validateDocument("123.456.789-09"));
+console.log("CPF sem máscara:", validateDocument("12345678909"));
 
 console.log("CNPJ com máscara:", validateDocument("11.222.333/0001-81"));
 console.log("CNPJ sem máscara:", validateDocument("11222333000181"));

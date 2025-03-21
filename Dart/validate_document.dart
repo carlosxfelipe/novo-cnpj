@@ -10,8 +10,8 @@ bool validateDocument(String doc) {
 }
 
 void main() {
-  print("CPF com máscara: ${validateDocument("027.207.263-03")}");
-  print("CPF sem máscara: ${validateDocument("02720726303")}");
+  print("CPF com máscara: ${validateDocument("123.456.789-09")}");
+  print("CPF sem máscara: ${validateDocument("12345678909")}");
 
   print("CNPJ com máscara: ${validateDocument("11.222.333/0001-81")}");
   print("CNPJ sem máscara: ${validateDocument("11222333000181")}");
