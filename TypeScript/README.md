@@ -1,16 +1,12 @@
 # Validador de Documentos (CPF, CNPJ e Novo CNPJ)
 
-Este projeto em TypeScript fornece classes para validação e formatação de documentos brasileiros:
-
-- CPF
-- CNPJ tradicional
-- Novo formato de CNPJ
+Este projeto contém classes para validação de CPF, CNPJ e um novo formato de CNPJ.
 
 ## Funcionalidades
 
-- Verifica se um CPF é válido
-- Verifica se um CNPJ (tradicional ou novo formato) é válido
-- Formata CNPJs válidos
+- Validação de CPF
+- Validação de CNPJ tradicional
+- Validação de um novo formato de CNPJ
 
 ## Como Usar
 

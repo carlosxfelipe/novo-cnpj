@@ -7,11 +7,10 @@ Este projeto contém classes para validação de CPF, CNPJ e um novo formato de 
 - Validação de CPF
 - Validação de CNPJ tradicional
 - Validação de um novo formato de CNPJ
-- Formatação de CNPJ
 
 ## Como Usar
 
-Importe as classes necessárias e utilize os métodos estáticos para validar ou formatar documentos:
+Importe as classes e utilize os métodos estáticos:
 
 ```dart
 import 'cnpj.dart';
