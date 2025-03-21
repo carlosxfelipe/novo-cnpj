@@ -1,4 +1,4 @@
-# Validador de Documentos (CPF, CNPJ e Novo CNPJ) - TypeScript
+# Validador de Documentos (CPF, CNPJ e Novo CNPJ)
 
 Este projeto em TypeScript fornece classes para validação e formatação de documentos brasileiros:
 
