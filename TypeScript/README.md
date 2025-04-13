@@ -1,38 +1,12 @@
 # Validador de Documentos (CPF, CNPJ e Novo CNPJ)
 
-Este projeto contém classes para validação de CPF, CNPJ e um novo formato de CNPJ.
+Este projeto contém classes/funções para validação de CPF, CNPJ e um novo formato de CNPJ.
 
 ## Funcionalidades
 
 - Validação de CPF
 - Validação de CNPJ tradicional
 - Validação de um novo formato de CNPJ
-
-## Como Usar
-
-Importe as classes e utilize os métodos estáticos:
-
-```ts
-import { CNPJ } from "./cnpj";
-import { CPF } from "./cpf";
-import { NewCNPJ } from "./new-cnpj";
-
-const validateDocument = (doc: string): boolean => {
-  if (CPF.isValid(doc)) return true;
-  if (CNPJ.isValid(doc)) return true;
-  if (NewCNPJ.isValid(doc)) return true;
-  return false;
-};
-
-console.log("CPF com máscara:", validateDocument("123.456.789-09"));
-console.log("CPF sem máscara:", validateDocument("12345678909"));
-
-console.log("CNPJ com máscara:", validateDocument("11.222.333/0001-81"));
-console.log("CNPJ sem máscara:", validateDocument("11222333000181"));
-
-console.log("Novo CNPJ com máscara:", validateDocument("1A.23B.45C/678D-01"));
-console.log("Novo CNPJ sem máscara:", validateDocument("1A23B45C678D01"));
-```
 
 ## Licença
 
