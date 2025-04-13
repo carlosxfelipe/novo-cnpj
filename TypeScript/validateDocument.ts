@@ -1,11 +1,11 @@
 import { isValidCPF } from "./cpf";
 import { isValidCNPJ } from "./cnpj";
-import { NewCNPJ } from "./new-cnpj";
+import { isValidNewCNPJ } from "./new-cnpj";
 
 const validateDocument = (doc: string): boolean => {
   if (isValidCPF(doc)) return true;
   if (isValidCNPJ(doc)) return true;
-  if (NewCNPJ.isValid(doc)) return true;
+  if (isValidNewCNPJ(doc)) return true;
   return false;
 };
 
