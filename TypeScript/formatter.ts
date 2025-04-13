@@ -1,12 +1,17 @@
+import { maskCPF, maskCNPJ, maskNewCNPJ } from "./mask";
+
 import { isValidCPF } from "./cpf";
 import { isValidCNPJ } from "./cnpj";
 import { isValidNewCNPJ } from "./new-cnpj";
 
-const validateDocument = (doc: string): boolean => {
-  if (isValidCPF(doc)) return true;
-  if (isValidCNPJ(doc)) return true;
-  if (isValidNewCNPJ(doc)) return true;
-  return false;
+export const validateDocument = (doc: string): boolean =>
+  isValidCPF(doc) || isValidCNPJ(doc) || isValidNewCNPJ(doc);
+
+export const formatDocument = (doc: string): string | null => {
+  if (isValidCPF(doc)) return maskCPF(doc);
+  if (isValidCNPJ(doc)) return maskCNPJ(doc);
+  if (isValidNewCNPJ(doc)) return maskNewCNPJ(doc);
+  return null;
 };
 
 console.log("CPF com máscara:", validateDocument("123.456.789-09"));
