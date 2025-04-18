@@ -7,6 +7,7 @@ Este projeto contém classes/funções para validação de CPF, CNPJ e um novo f
 - Validação de CPF
 - Validação de CNPJ tradicional
 - Validação de um novo formato de CNPJ
+- Aplicação de máscara em documentos válidos
 
 ## Licença
 
