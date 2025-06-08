@@ -12,6 +12,13 @@ class NewCNPJ {
     return expectedCheckDigits == calculatedCheckDigits;
   }
 
+  static String format(String cnpj) {
+    final cleaned = cnpj.replaceAll(RegExp(r'[^0-9A-Z]'), '');
+    if (cleaned.length != 14) return '';
+
+    return '${cleaned.substring(0, 2)}.${cleaned.substring(2, 5)}.${cleaned.substring(5, 8)}/${cleaned.substring(8, 12)}-${cleaned.substring(12)}';
+  }
+
   static String _calculateCheckDigits(String base) {
     final weights1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
     final weights2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
@@ -19,17 +26,19 @@ class NewCNPJ {
     final convertedBase = base.split('').map(_charToValue).toList();
 
     final firstCheckDigit = _calculateCheckDigit(convertedBase, weights1);
-    final secondCheckDigit = _calculateCheckDigit(
-      [...convertedBase, firstCheckDigit],
-      weights2,
-    );
+    final secondCheckDigit = _calculateCheckDigit([
+      ...convertedBase,
+      firstCheckDigit,
+    ], weights2);
 
     return '$firstCheckDigit$secondCheckDigit';
   }
 
   static int _calculateCheckDigit(List<int> values, List<int> weights) {
-    final sum = List.generate(values.length, (i) => values[i] * weights[i])
-        .reduce((a, b) => a + b);
+    final sum = List.generate(
+      values.length,
+      (i) => values[i] * weights[i],
+    ).reduce((a, b) => a + b);
 
     final remainder = sum % 11;
     return remainder < 2 ? 0 : 11 - remainder;
