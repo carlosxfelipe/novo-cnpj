@@ -28,7 +28,7 @@ export const isValidCNPJ = (cnpj: string | number | number[]): boolean => {
   if (isString) {
     const digitsOnly = /^\d{14}$/.test(cnpj as string);
     const validFormat = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/.test(
-      cnpj as string
+      cnpj as string,
     );
     if (!digitsOnly && !validFormat) return false;
   }

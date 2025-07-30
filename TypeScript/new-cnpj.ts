@@ -15,7 +15,7 @@ export const isValidNewCNPJ = (cnpj: string): boolean => {
   const calculateCheckDigit = (values: number[], weights: number[]): number => {
     const sum = values.reduce(
       (acc, val, index) => acc + val * weights[index],
-      0
+      0,
     );
     const remainder = sum % 11;
     return remainder < 2 ? 0 : 11 - remainder;
@@ -38,7 +38,7 @@ export const isValidNewCNPJ = (cnpj: string): boolean => {
     const firstCheckDigit = calculateCheckDigit(convertedBase, weights1);
     const secondCheckDigit = calculateCheckDigit(
       [...convertedBase, firstCheckDigit],
-      weights2
+      weights2,
     );
     return `${firstCheckDigit}${secondCheckDigit}`;
   };

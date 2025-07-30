@@ -6,9 +6,3 @@ export const maskCNPJ = (raw: string): string =>
 
 export const maskNewCNPJ = (raw: string): string =>
   raw.replace(/^(.{2})(.{3})(.{3})(.{4})(.{2})$/, "$1.$2.$3/$4-$5");
-
-// console.log("CPF:", maskCPF("12345678909"));
-
-// console.log("CNPJ:", maskCNPJ("11222333000181"));
-
-// console.log("Novo CNPJ:", maskNewCNPJ("1A23B45C678D01"));
