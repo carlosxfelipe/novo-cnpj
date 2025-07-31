@@ -1,46 +1,70 @@
 import re
+from typing import List
 
 
 class NewCNPJ:
+    """
+    Validador e formatador para o Novo CNPJ com letras e dígitos.
+    """
+
     @staticmethod
-    def is_valid(cnpj):
-        if not re.fullmatch(r"[0-9A-Z./-]+", cnpj):
+    def is_valid(cnpj: str) -> bool:
+        """
+        Verifica se o Novo CNPJ é válido.
+        Espera 14 caracteres alfanuméricos após limpeza.
+        """
+        if not isinstance(cnpj, str) or not re.fullmatch(r"[0-9A-Z./-]+", cnpj):
             return False
 
-        cleaned_cnpj = re.sub(r"[^0-9A-Z]", "", cnpj)
-        if len(cleaned_cnpj) != 14:
+        cleaned = re.sub(r"[^0-9A-Z]", "", cnpj)
+        if len(cleaned) != 14:
             return False
 
-        base = cleaned_cnpj[:12]
-        expected = cleaned_cnpj[12:]
+        base = cleaned[:12]
+        expected = cleaned[12:]
         calculated = NewCNPJ._calculate_check_digits(base)
 
         return expected == calculated
 
     @staticmethod
-    def _calculate_check_digits(base):
+    def format(cnpj: str) -> str:
+        """
+        Formata o Novo CNPJ no padrão: XX.XXX.XXX/XXXX-XX
+        Retorna string vazia se inválido.
+        """
+        if not NewCNPJ.is_valid(cnpj):
+            return ""
+
+        cleaned = re.sub(r"[^0-9A-Z]", "", cnpj)
+        return (
+            f"{cleaned[:2]}.{cleaned[2:5]}.{cleaned[5:8]}/"
+            f"{cleaned[8:12]}-{cleaned[12:]}"
+        )
+
+    @staticmethod
+    def _calculate_check_digits(base: str) -> str:
+        """
+        Calcula os dois dígitos verificadores com pesos personalizados.
+        """
         weights1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
         weights2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
 
-        converted = [NewCNPJ._char_to_value(c) for c in base]
+        values = [NewCNPJ._char_to_value(c) for c in base]
+        d1 = NewCNPJ._calculate_check_digit(values, weights1)
+        d2 = NewCNPJ._calculate_check_digit(values + [d1], weights2)
 
-        first = NewCNPJ._calculate_check_digit(converted, weights1)
-        second = NewCNPJ._calculate_check_digit(converted + [first], weights2)
-
-        return f"{first}{second}"
+        return f"{d1}{d2}"
 
     @staticmethod
-    def _calculate_check_digit(values, weights):
+    def _calculate_check_digit(values: List[int], weights: List[int]) -> int:
         total = sum(v * w for v, w in zip(values, weights))
         remainder = total % 11
         return 0 if remainder < 2 else 11 - remainder
 
     @staticmethod
-    def _char_to_value(char):
-        code = ord(char)
+    def _char_to_value(char: str) -> int:
         if "0" <= char <= "9":
-            return code - ord("0")
+            return ord(char) - ord("0")
         elif "A" <= char <= "Z":
-            return code - ord("A") + 17
-        else:
-            return 0
+            return ord(char) - ord("A") + 17
+        return 0

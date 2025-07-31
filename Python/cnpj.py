@@ -1,30 +1,34 @@
 import re
+from typing import Union, List, Optional
 
 
 class CNPJ:
+    """
+    Classe utilitária para validação e formatação de CNPJ brasileiro.
+    """
+
     _regex_cnpj = re.compile(r"^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$")
 
     @staticmethod
-    def is_valid(cnpj):
+    def is_valid(cnpj: Union[str, int, List[int], None]) -> bool:
+        """
+        Verifica se o CNPJ fornecido é válido.
+        Aceita strings com ou sem máscara, inteiros ou listas de inteiros.
+        """
         if cnpj is None:
             return False
 
-        is_string = isinstance(cnpj, str)
-        valid_types = is_string or isinstance(cnpj, int) or isinstance(cnpj, list)
-        if not valid_types:
+        if not isinstance(cnpj, (str, int, list)):
             return False
 
-        if is_string:
+        if isinstance(cnpj, str):
             digits_only = re.fullmatch(r"\d{14}", cnpj) is not None
             valid_format = CNPJ._regex_cnpj.fullmatch(cnpj) is not None
             if not digits_only and not valid_format:
                 return False
 
         numbers = CNPJ._extract_numbers(cnpj)
-        if len(numbers) != 14:
-            return False
-
-        if len(set(numbers)) == 1:
+        if len(numbers) != 14 or len(set(numbers)) == 1:
             return False
 
         first_digit = CNPJ._calculate_digit(12, numbers)
@@ -35,7 +39,11 @@ class CNPJ:
         return second_digit == numbers[13]
 
     @staticmethod
-    def format(cnpj):
+    def format(cnpj: Union[str, int, List[int]]) -> str:
+        """
+        Retorna o CNPJ formatado como 00.000.000/0000-00.
+        Retorna string vazia se o CNPJ não for válido.
+        """
         if not CNPJ.is_valid(cnpj):
             return ""
 
@@ -46,11 +54,17 @@ class CNPJ:
         )
 
     @staticmethod
-    def _extract_numbers(value):
+    def _extract_numbers(value: Union[str, int, List[int]]) -> List[int]:
+        """
+        Extrai apenas os dígitos numéricos do valor fornecido.
+        """
         return [int(d) for d in re.sub(r"\D", "", str(value))]
 
     @staticmethod
-    def _calculate_digit(x, numbers):
+    def _calculate_digit(x: int, numbers: List[int]) -> int:
+        """
+        Calcula o dígito verificador com base nos primeiros `x` números.
+        """
         slice_ = numbers[:x]
         factor = x - 7
         total = 0
