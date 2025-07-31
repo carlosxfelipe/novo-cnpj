@@ -2,6 +2,19 @@ import 'cnpj_validator.dart';
 import 'cpf_validator.dart';
 import 'new_cnpj_validator.dart';
 
+bool validateDocument(String doc) =>
+    CPF.isValid(doc) || CNPJ.isValid(doc) || NewCNPJ.isValid(doc);
+
+String? maskDocument(String doc) {
+  doc = doc.replaceAll(RegExp(r'\W'), '');
+
+  if (CPF.isValid(doc)) return CPF.format(doc);
+  if (CNPJ.isValid(doc)) return CNPJ.format(doc);
+  if (NewCNPJ.isValid(doc)) return NewCNPJ.format(doc);
+
+  return null;
+}
+
 bool validatePassword(String password, String confirmPassword) {
   final hasUpper = password.contains(RegExp(r'[A-Z]'));
   final hasLower = password.contains(RegExp(r'[a-z]'));
@@ -12,26 +25,6 @@ bool validatePassword(String password, String confirmPassword) {
       hasLower &&
       hasNumber &&
       password == confirmPassword;
-}
-
-bool validateDocument(String doc) {
-  if (CPF.isValid(doc)) return true;
-  if (CNPJ.isValid(doc)) return true;
-  if (NewCNPJ.isValid(doc)) return true;
-  return false;
-}
-
-String formatDocumentInput(String input) {
-  input = input.replaceAll(RegExp(r'\W'), '');
-
-  if (input.length <= 11 && CPF.isValid(input)) {
-    return CPF.format(input);
-  } else if (input.length == 14) {
-    if (CNPJ.isValid(input)) return CNPJ.format(input);
-    if (NewCNPJ.isValid(input)) return NewCNPJ.format(input);
-  }
-
-  return input;
 }
 
 String formatCep(String input) {
