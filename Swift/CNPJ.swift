@@ -39,7 +39,22 @@ class CNPJ {
         let numbers = extractNumbers(from: cnpj!)
         let digits = numbers.map(String.init).joined()
         
-        return "\(digits.prefix(2)).\(digits[2..<5]).\(digits[5..<8])/\(digits[8..<12])-\(digits.suffix(2))"
+        let part1 = digits.prefix(2)
+        let start2 = digits.index(digits.startIndex, offsetBy: 2)
+        let end5 = digits.index(digits.startIndex, offsetBy: 5)
+        let part2 = digits[start2..<end5]
+        
+        let start5 = end5
+        let end8 = digits.index(digits.startIndex, offsetBy: 8)
+        let part3 = digits[start5..<end8]
+        
+        let start8 = end8
+        let end12 = digits.index(digits.startIndex, offsetBy: 12)
+        let part4 = digits[start8..<end12]
+        
+        let part5 = digits.suffix(2)
+
+        return "\(part1).\(part2).\(part3)/\(part4)-\(part5)"
     }
 
     private static func extractNumbers(from value: Any) -> [Int] {
@@ -62,5 +77,3 @@ class CNPJ {
         return result > 9 ? 0 : result
     }
 }
-
-

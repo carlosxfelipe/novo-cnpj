@@ -21,8 +21,23 @@ class NewCNPJ {
     static func format(_ cnpj: String) -> String {
         let cleaned = cnpj.replacingOccurrences(of: "[^0-9A-Z]", with: "", options: .regularExpression)
         guard cleaned.count == 14 else { return "" }
+
+        let part1 = cleaned.prefix(2)
+        let start2 = cleaned.index(cleaned.startIndex, offsetBy: 2)
+        let end5 = cleaned.index(cleaned.startIndex, offsetBy: 5)
+        let part2 = cleaned[start2..<end5]
         
-        return "\(cleaned.prefix(2)).\(cleaned[2..<5]).\(cleaned[5..<8])/\(cleaned[8..<12])-\(cleaned.suffix(2))"
+        let start5 = end5
+        let end8 = cleaned.index(cleaned.startIndex, offsetBy: 8)
+        let part3 = cleaned[start5..<end8]
+        
+        let start8 = end8
+        let end12 = cleaned.index(cleaned.startIndex, offsetBy: 12)
+        let part4 = cleaned[start8..<end12]
+        
+        let part5 = cleaned.suffix(2)
+
+        return "\(part1).\(part2).\(part3)/\(part4)-\(part5)"
     }
 
     private static func calculateCheckDigits(base: String) -> String {
@@ -52,5 +67,3 @@ class NewCNPJ {
         }
     }
 }
-
-

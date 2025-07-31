@@ -49,12 +49,14 @@ func formatPhone(_ input: String) -> String {
 
     if cleaned.count >= 11 {
         let ddd = cleaned.prefix(2)
-        let middle = cleaned[2..<7]
-        let end = cleaned[7..<11]
+        let startMiddle = cleaned.index(cleaned.startIndex, offsetBy: 2)
+        let endMiddle = cleaned.index(cleaned.startIndex, offsetBy: 7)
+        let middle = cleaned[startMiddle..<endMiddle]
+        let startEnd = cleaned.index(cleaned.startIndex, offsetBy: 7)
+        let endEnd = cleaned.index(cleaned.startIndex, offsetBy: 11)
+        let end = cleaned[startEnd..<endEnd]
         return "(\(ddd)) \(middle)-\(end)"
     }
 
     return cleaned
 }
-
-
