@@ -1,18 +1,5 @@
 from validate_document import validate_document
-from cpf import CPF
-from cnpj import CNPJ
-from new_cnpj import NewCNPJ
-
-
-def mask_document(doc):
-    if CPF.is_valid(doc):
-        return CPF.format(doc)
-    if CNPJ.is_valid(doc):
-        return CNPJ.format(doc)
-    if NewCNPJ.is_valid(doc):
-        return NewCNPJ.format(doc)
-    return None
-
+from mask_document import mask_document
 
 if __name__ == "__main__":
     docs = [
