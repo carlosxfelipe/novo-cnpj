@@ -1,5 +1,7 @@
-import { isValidCPFOrCNPJ } from "./validateDocument";
-import { maskCNPJ, maskCPF, maskNewCNPJ } from "./mask";
+import { isValidCPFOrCNPJ } from "./validate-cpf-or-cnpj";
+import { maskCPF } from "./mask-cpf";
+import { maskCNPJ } from "./mask-cnpj";
+import { maskNewCNPJ } from "./mask-new-cnpj";
 
 console.log("CPF com máscara:", isValidCPFOrCNPJ("123.456.789-09"));
 console.log("CPF sem máscara:", isValidCPFOrCNPJ("12345678909"));

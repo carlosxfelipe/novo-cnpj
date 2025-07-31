@@ -1,4 +1,6 @@
-import { maskCNPJ, maskCPF, maskNewCNPJ } from "./mask";
+import { maskCPF } from "./mask-cpf";
+import { maskCNPJ } from "./mask-cnpj";
+import { maskNewCNPJ } from "./mask-new-cnpj";
 
 import { isValidCPF } from "./validate-cpf";
 import { isValidCNPJ } from "./validate-cnpj";
