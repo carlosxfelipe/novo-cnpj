@@ -1,8 +1,8 @@
 import { maskCNPJ, maskCPF, maskNewCNPJ } from "./mask";
 
-import { isValidCPF } from "./cpf";
-import { isValidCNPJ } from "./cnpj";
-import { isValidNewCNPJ } from "./new-cnpj";
+import { isValidCPF } from "./validate-cpf";
+import { isValidCNPJ } from "./validate-cnpj";
+import { isValidNewCNPJ } from "./validate-new-cnpj";
 
 export const maskCPFOrCNPJ = (doc: string): string | null => {
   if (isValidCPF(doc)) return maskCPF(doc);
