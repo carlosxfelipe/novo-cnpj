@@ -12,7 +12,7 @@ const calcCheckDigit = (values: number[], weights: number[]): number => {
   return r < 2 ? 0 : 11 - r;
 };
 
-export const isCNPX = (cnpjx: string): boolean => {
+export const isNewAlphaCNPJ = (cnpjx: string): boolean => {
   if (!/^[0-9A-Z.\/-]+$/.test(cnpjx)) return false;
 
   const cleaned = onlyAlphaNumUpper(stripCommonMask(cnpjx));

@@ -6,9 +6,9 @@ export { formatToCPF } from "./cpf/mask";
 export { isCNPJ } from "./cnpj/validate";
 export { formatToCNPJ } from "./cnpj/mask";
 
-// CNPX (novo CNPJ alfanumérico)
-export { isCNPX } from "./cnpjx/validate";
-export { formatToCNPJX } from "./cnpjx/mask";
+// Novo CNPJ alfanumérico
+export { isNewAlphaCNPJ } from "./cnpjx/validate";
+export { formatToNewAlphaCNPJ } from "./cnpjx/mask";
 
 // Genéricos
 export { isCPFOrCNPJ } from "./document/validate";

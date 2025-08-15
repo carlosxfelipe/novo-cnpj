@@ -8,7 +8,7 @@ console.log("CPF sem máscara:", isCPFOrCNPJ("12345678909"));
 console.log("CNPJ com máscara:", isCPFOrCNPJ("11.222.333/0001-81"));
 console.log("CNPJ sem máscara:", isCPFOrCNPJ("11222333000181"));
 
-// Novo CNPJ (CNPX)
+// Novo CNPJ alfanumérico
 console.log("Novo CNPJ com máscara:", isCPFOrCNPJ("1A.23B.45C/678D-01"));
 console.log("Novo CNPJ sem máscara:", isCPFOrCNPJ("1A23B45C678D01"));
 

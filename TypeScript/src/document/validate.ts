@@ -1,12 +1,12 @@
 import { isCPF } from "../cpf/validate";
 import { isCNPJ } from "../cnpj/validate";
-import { isCNPX } from "../cnpjx/validate";
+import { isNewAlphaCNPJ } from "../cnpjx/validate";
 import type { DocKind } from "../core/types";
 
 export const whichDoc = (doc: string): DocKind | null => {
   if (isCPF(doc)) return "cpf";
   if (isCNPJ(doc)) return "cnpj";
-  if (isCNPX(doc)) return "cnpjx";
+  if (isNewAlphaCNPJ(doc)) return "cnpjx";
   return null;
 };
 
