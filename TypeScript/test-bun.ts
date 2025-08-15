@@ -1,4 +1,4 @@
-import { formatToCPFOrCNPJ, isCPFOrCNPJ } from "./src/index.ts";
+import { formatToCPFOrCNPJ, isCPFOrCNPJ } from "./src/index";
 
 // CPF
 console.log("CPF com máscara:", isCPFOrCNPJ("123.456.789-09"));
