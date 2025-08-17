@@ -12,10 +12,10 @@ const calcCheckDigit = (values: number[], weights: number[]): number => {
   return r < 2 ? 0 : 11 - r;
 };
 
-export const isNewAlphaCNPJ = (cnpjx: string): boolean => {
-  if (!/^[0-9A-Z.\/-]+$/.test(cnpjx)) return false;
+export const isNewAlphaCNPJ = (alphacnpj: string): boolean => {
+  if (!/^[0-9A-Z.\/-]+$/.test(alphacnpj)) return false;
 
-  const cleaned = onlyAlphaNumUpper(stripCommonMask(cnpjx));
+  const cleaned = onlyAlphaNumUpper(stripCommonMask(alphacnpj));
   if (cleaned.length !== 14) return false;
 
   const base = cleaned.slice(0, 12);

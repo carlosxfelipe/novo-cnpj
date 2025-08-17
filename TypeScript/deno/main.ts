@@ -4,7 +4,7 @@ import {
   formatToCPFOrCNPJ,
   formatToPhoneBR,
   isCPFOrCNPJ,
-} from "jsr:@carlosxfelipe/brazilian-values@0.2.1";
+} from "jsr:@carlosxfelipe/brazilian-values@0.2.2";
 
 // CPF
 console.log("CPF com máscara:", isCPFOrCNPJ("123.456.789-09")); // true

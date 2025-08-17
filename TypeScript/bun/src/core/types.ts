@@ -1,1 +1,1 @@
-export type DocKind = "cpf" | "cnpj" | "cnpjx";
+export type DocKind = "cpf" | "cnpj" | "alphacnpj";
